@@ -1,4 +1,4 @@
-# Phase 1 — Cloud Runbook (the real ARC-2 scores)
+# Phase 1: Cloud Runbook (the real ARC-2 scores)
 
 ## Why cloud
 The Mac (Metal/MLX) proved the *mechanism* but can't run the winning stacks:
@@ -7,7 +7,7 @@ NVARC/ARChitects/MindsAI/TRM-training all need **CUDA** (Unsloth, bitsandbytes
 CUDA GPU. Mac stays the **fast MLX experiment bench** for the paper track.
 
 ## The box (pick one)
-- **RunPod** or **Lambda** — 1× **H100 80GB** (~$2-3/hr) or 1× **L40S 48GB**
+- **RunPod** or **Lambda**: 1× **H100 80GB** (~$2-3/hr) or 1× **L40S 48GB**
   (~$1/hr). Start with L40S for dev, H100 for the big training runs.
 - Storage: 200GB+ volume (models + synthetic datasets are large).
 - Image: PyTorch 2.x + CUDA 12.x base.
@@ -22,22 +22,22 @@ pip install torch transformers accelerate peft datasets bitsandbytes trl unsloth
 
 ## Two tracks (run in parallel)
 
-### Track A — Reproduce the 2025 winner (leaderboard)
+### Track A: Reproduce the 2025 winner (leaderboard)
 Fastest route to a real competitive number.
-1. **MindsAI (smaller, easier first):** `baselines/MindsAI/` — CodeT5, clean
+1. **MindsAI (smaller, easier first):** `baselines/MindsAI/`, a CodeT5, clean
    TTFT pipeline. Follow its README (`prepare_data.py` → `train.py` →
    `predict.py`). Target: reproduce its ~15% ARC-2.
-2. **NVARC (the 24% winner):** `baselines/NVARC/` — needs the Kaggle datasets:
+2. **NVARC (the 24% winner):** `baselines/NVARC/` needs the Kaggle datasets:
    `kaggle datasets download -d sorokin/nvarc-synthetic-puzzles` (103k) and
    `-d sorokin/nvarc-augmented-puzzles` (3.2M). Then their ARChitects Qwen3-4B
-   Unsloth-flash-LoRA fine-tune + TRM. Heavy (multi-GPU-days) — do this only
+   Unsloth-flash-LoRA fine-tune + TRM. Heavy (multi-GPU-days). Do this only
    after MindsAI works.
 
-### Track B — Our own 8B TTT (portable, paper-ready)
+### Track B: Our own 8B TTT (portable, paper-ready)
 Port our `ttt/` pipeline (already written, works on Mac) to CUDA + a bigger model:
 - Swap model to `Qwen2.5-7B-Instruct` (or `-8B`), keep our `augment.py`
   (dihedral × color-perm) + per-task LoRA + augmented voting.
-- Bump iters (300-1000), num-layers (-1 = all), batch (8-16) — trivial on H100.
+- Bump iters (300-1000), num-layers (-1 = all), batch (8-16), trivial on H100.
 - This is the substrate for the **paper insight** (internals-guided / efficient TTT).
 
 ## Kaggle submission (the actual prize gate)
@@ -54,10 +54,10 @@ Port our `ttt/` pipeline (already written, works on Mac) to CUDA + a bigger mode
 - Track B (our 8B TTT): ~$100-400.
 
 ## Targets (from the plan)
-- Paper prize (primary): a clean novel result — score-independent.
+- Paper prize (primary): a clean novel result, score-independent.
 - Progress prize (stretch): top-8, ~12-20% on ARC-2.
 
 ## Verification (unchanged)
-- Metric: held-out **arc2-eval (120)** — never train on it.
+- Metric: held-out **arc2-eval (120)**; never train on it.
 - Do a **Kaggle dry-run submission early** to confirm offline + budget compliance.
 - Log every run in `RESULTS.md`.

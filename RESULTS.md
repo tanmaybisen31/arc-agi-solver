@@ -18,7 +18,7 @@
 2026-07-03 07:07:04Z | round5 | arc2-train | tasks 339/1000 (33.90%) | outputs@2 358/1076 (33.27%) | dets 321 | 139.4s
 2026-07-03 07:07:43Z | round5 | arc2-eval | tasks 2/120 (1.67%) | outputs@2 2/167 (1.20%) | dets 321 | 38.8s
 
-## Phase 0 — Neural pivot (MLX, Mac-native)
-2026-07-03 | env | MLX 0.29.3 + mlx-lm 0.29.1 installed; baselines cloned (TRM, NVARC, MindsAI) — all confirmed CUDA-only (Unsloth/bitsandbytes/triton) => heavy repro goes to cloud.
-2026-07-03 | in-context | Qwen2.5-1.5B-Instruct-4bit | arc2-eval (n=30): 0/30 = 0.00% — confirms small-model prompting can't do ARC-2; TTT is required.
-2026-07-03 | ttt-pipeline | per-task LoRA (aug: dihedral x color-perm, ~110-220 exs/task) + dihedral augmented-inference voting — runs end-to-end on Mac; tuning + more compute (cloud) needed for real scores. Validation run in progress.
+## Phase 0: Neural pivot (MLX, Mac-native)
+2026-07-03 | env | MLX 0.29.3 + mlx-lm 0.29.1 installed; baselines cloned (TRM, NVARC, MindsAI); all confirmed CUDA-only (Unsloth/bitsandbytes/triton) => heavy repro goes to cloud.
+2026-07-03 | in-context | Qwen2.5-1.5B-Instruct-4bit | arc2-eval (n=30): 0/30 = 0.00%. Confirms small-model prompting can't do ARC-2; TTT is required.
+2026-07-03 | ttt-pipeline | per-task LoRA (aug: dihedral x color-perm, ~110-220 exs/task) + dihedral augmented-inference voting. Runs end-to-end on Mac; tuning + more compute (cloud) needed for real scores. Validation run in progress.
