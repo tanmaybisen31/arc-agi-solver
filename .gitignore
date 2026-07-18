@@ -1,0 +1,22 @@
+# virtualenvs
+venv/
+mlxenv/
+__pycache__/
+*.pyc
+
+# ARC datasets — fetched separately (see README "Setup")
+arc1/
+arc2/
+
+# external baseline repos (cloned for comparison, not part of this project)
+baselines/
+
+# build artifacts / experiment outputs
+rounds/
+status.json
+ttt/_ttt_work/
+*.log
+*.npy
+
+# macOS
+.DS_Store
